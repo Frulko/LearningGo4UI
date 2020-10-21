@@ -10,10 +10,13 @@ func NewViewManager(rootNode *View) *ViewManager {
 	return &v
 }
 
+func (v *ViewManager) GetNodes() []*View {
+	return v.nodes
+}
+
 func (v *ViewManager) DestroyAndFreeNodes() {
 	for i := 0; i < len(v.nodes); i++ {
 		v.nodes[i].DestroyAndFree()
-
 	}
 	v.nodes = nil
 }

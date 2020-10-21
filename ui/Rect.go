@@ -13,6 +13,21 @@ func Rect(w int, h int, x int, y int) *rect {
 	return &r
 }
 
-func (r rect) GetWidth() int {
-	return r.width
+func (r *rect) setSize(w int, h int) {
+	r.width = w
+	r.height = h
+}
+
+func (r *rect) setPosition(x int, y int) {
+	r.x = x
+	r.y = y
+}
+
+func (r *rect) getSize() []int {
+
+	var i []int
+	i = append(i, r.width)
+	i = append(i, r.height)
+
+	return i
 }

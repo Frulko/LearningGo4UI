@@ -5,11 +5,11 @@ import (
 	"learning-go/ui"
 )
 
-func main() {
-	// r := ui.Rect(150, 100, 0, 0)
-
+func App() *ui.View {
 	rootView := ui.NewView("root")
-	manager := ui.NewViewManager(rootView)
+	rootView.SetSize(800, 600)
+
+	fmt.Println(rootView.GetSize())
 
 	childView := ui.NewView("child 1")
 	childView2 := ui.NewView("child 2")
@@ -24,12 +24,12 @@ func main() {
 	rootView.AppendChild(childView)
 	rootView.AppendChild(childView2)
 
-	childView2.DeepChildrenLength()
-	// fmt.Println(allChildren)
+	fmt.Println(rootView.GetDeepChildrenLength())
 
-	fmt.Println(rootView.GetChildByIndex(1).GetName(), childView2.GetName())
-	fmt.Println(rootView)
+	return rootView
+}
 
+func main() {
+	manager := ui.NewViewManager(App())
 	manager.DestroyAndFreeNodes()
-	// fmt.Println(morestrings.ReverseRunes("Hello"))
 }

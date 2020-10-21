@@ -12,20 +12,28 @@ func NewView(name string) *View {
 	return &v
 }
 
+func (v *View) SetSize(w int, h int) {
+	v.rect.setSize(w, h)
+}
+
+func (v *View) setPosition(x int, y int) {
+	v.rect.setPosition(x, y)
+}
+
 func (v *View) AppendChild(childView *View) {
 	v.children = append(v.children, childView)
 }
 
-func (v *View) ChildrenLength() int {
+func (v *View) GetChildrenLength() int {
 	return len(v.children)
 }
 
-func (v *View) DeepChildrenLength() int {
+func (v *View) GetDeepChildrenLength() int {
 	count := 0
 	nbChildren := len(v.children)
 	for i := 0; i < nbChildren; i++ {
 		child := v.children[i]
-		length := child.DeepChildrenLength()
+		length := child.GetDeepChildrenLength()
 		count += length
 	}
 
@@ -54,4 +62,8 @@ func (v *View) GetName() string {
 
 func (v *View) GetRect() rect {
 	return v.rect
+}
+
+func (v *View) GetSize() []int {
+	return v.rect.getSize()
 }
